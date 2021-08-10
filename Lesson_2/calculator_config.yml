@@ -1,0 +1,29 @@
+en:
+  welcome: "Welcome to Calculator! Please enter your name:"
+  invalid_name: "Please enter a name!"
+  greeting: "Hi, #{name}!"
+  enter_integer: "Please enter two integers."
+  invalid_entry: "Invalid entry. Please try again."
+  calc_prompt: "Please enter your desired calculation \n
+    Add \n
+    Subtract\n
+    Multiply\n
+    Divide\n"
+
+  again?: "Would like to do this again? Y/N"
+  goodbye: "Thank you for using the calculator. Good-Bye #{name}!!"
+
+jap:
+  welcome: "電卓へようこそ！あなたの名前を入力してください："
+  invalid_name: "名前を入力してください!"
+  greeting: "#{name}さん、こんにちは!"
+  enter_integer: "2つの整数を入力してください。"
+  invalid_entry: "エントリが無効です。もう一度やり直してください。"
+  calc_prompt: "希望の計算を入力してください　\n
+    Add      (足し算)　\n
+    Subtract (引き算)　\n
+    Multiply (掛け算)　\n
+    Divide   (割り算)　 "
+
+  again?: "これをもう一度やりたいですか？ Y / N"
+  goodbye: "電卓をご利用いただきありがとうございます。さようなら＃{name} !!"
