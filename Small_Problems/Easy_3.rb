@@ -168,15 +168,15 @@
 
 ##### PALINDROMIC NUMBERS
 
-def palindrome? (entry)
-  entry == entry.reverse
-end
-def palindrome_number? (number)
-  number = number.to_s
-  palindrome?(number)
-end
+# def palindrome? (entry)
+#   entry == entry.reverse
+# end
+# def palindrome_number? (number)
+#   number = number.to_s
+#   palindrome?(number)
+# end
 
-p palindrome_number?(1234321)
-p palindrome_number?(88)
-p palindrome_number?(834)
-p palindrome_number?(0007)
+# p palindrome_number?(1234321)
+# p palindrome_number?(88)
+# p palindrome_number?(834)
+# p palindrome_number?(0007)
