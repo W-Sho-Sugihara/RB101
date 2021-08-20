@@ -136,10 +136,99 @@
 
 #------------------------11-----------------------------
 
-arr = [[2], [3, 5, 7], [9], [11, 13, 15]]
-new_arr = arr.map do |sub_arr|
-  sub_arr.select do |num|
-    num%3 ==0
-  end
+# arr = [[2], [3, 5, 7], [9], [11, 13, 15]]
+# new_arr = arr.map do |sub_arr|
+#   sub_arr.select do |num|
+#     num%3 ==0
+#   end
+# end
+# p new_arr
+
+#----------------------12-----------------------------------
+
+# arr = [[:a, 1], ['b', 'two'], ['sea', {c: 3}], [{a: 1, b: 2, c: 3, d: 4}, 'D']]
+
+# new_hash = arr.each_with_object({}) { |(key, value), hsh| hsh[key] = value}
+# p new_hash
+
+# new_hash2 ={}
+# arr.each{|(key,value)| new_hash2[key] = value}
+# p new_hash2
+
+#-------------------------13----------------------------------
+
+# arr = [[1, 6, 7], [1, 4, 9], [1, 8, 3]]
+
+# p arr.sort_by {|sub_arr| sub_arr.select{|num| num.odd?}}
+
+#-------------------------14------------------------------------
+
+# hsh = {
+#   'grape' => {type: 'fruit', colors: ['red', 'green'], size: 'small'},
+#   'carrot' => {type: 'vegetable', colors: ['orange'], size: 'medium'},
+#   'apple' => {type: 'fruit', colors: ['red', 'green'], size: 'medium'},
+#   'apricot' => {type: 'fruit', colors: ['orange'], size: 'medium'},
+#   'marrow' => {type: 'vegetable', colors: ['green'], size: 'large'},
+# }
+
+# new_hash= hsh.map do |(_, value)| 
+#   if value[:type] == 'fruit'  
+#     value[:colors].map{|color|color.capitalize}
+#   elsif value[:type] == 'vegetable'
+#     value[:size].upcase
+#   end
+# end
+# p new_hash
+
+#----------------------15----------------------------------------
+
+# arr = [{a: [1, 2, 3]}, {b: [2, 4, 6], c: [3, 6], d: [4]}, {e: [8], f: [6, 10]}]
+
+# new_arr = arr.each_with_object([]) do |sub_hsh, new_arr|
+#   new_arr<< sub_hsh if 
+#   sub_hsh.values.flatten.select { |num| num.odd?}.size == 0 
+# end
+
+# p new_arr
+
+#----------------------16--------------------------------------------
+
+require 'securerandom'
+
+def generate_uuid1 ()
+  sections= [8,4,4,4,12]
+  sections.map {|num| SecureRandom.hex(num/2)}.join('-')
 end
-p new_arr
+p generate_uuid1()
+
+HEXADECIMAL = {
+  0=> '1',
+  1=> '2',
+  2=> '3',
+  3=> '4',
+  4=> '5',
+  5=> '6',
+  6=> '7',
+  7=> '8',
+  8=> '9',
+  9=> '0',
+  10=> 'a',
+  11=> 'b',
+  12=> 'c',
+  13=> 'd',
+  14=> 'e',
+  15=> 'f' 
+}
+def generate_random_uuid_component (sequence_length)
+  sequence_string=''
+  sequence_length.times { sequence_string << HEXADECIMAL[rand(16)]}
+  sequence_string
+end
+
+def generate_uuid ()
+  sections = [8,4,4,4,12]
+sections.map { |num| generate_random_uuid_component(num) }.join('-')
+end
+p generate_uuid()
+
+p SecureRandom.uuid()
