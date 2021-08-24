@@ -270,13 +270,67 @@
 # ------further exploration-------
 #Rules: ignore nonletters and whitespace, single letter words still count, if even number of words retrun middle two words, returns empty is input is empty
 
-def penultimate(string)
-  array_words = string.delete("^a-zA-Z", "^' '").split(' ')
-  middle_word = array_words[array_words.size / 2]
-  if array_words.size.odd? 
-    middle_word
-  else middle_word = array_words[(array_words.size / 2)-1] + ' & ' +middle_word
-  end
+# def penultimate(string)
+#   array_words = string.delete("^a-zA-Z", "^' '").split(' ')
+#   middle_word = array_words[array_words.size / 2]
+#   if array_words.size.odd? 
+#     middle_word
+#   else middle_word = array_words[(array_words.size / 2)-1] + ' & ' +middle_word
+#   end
+# end
+
+# p penultimate('zero one, two three four five ') 
+
+
+customer_orders = [
+  {
+    customer_id: 12,
+    customer_name: 'Emma Lopez',
+    orders: [
+      { order_fulfilled: true, order_value: 135.99 },
+      { order_fulfilled: true, order_value: 289.49 },
+      { order_fulfilled: false, order_value: 58.00 }
+    ]
+  },
+  {
+    customer_id: 32,
+    customer_name: 'Michael Richards',
+    orders: [
+      { order_fulfilled: true, order_value: 120.00 },
+      { order_fulfilled: false, order_value: 85.65 }
+    ]
+  },
+  # rest of data...
+]
+
+# all_orders =[
+#   {customer_id: 12, customer_name: 'Emma Lopez', total_order_value: 483.48},
+#   {customer_id: 32, customer_name: 'Michael Richards', total_order_value: 205.65},
+#   # rest of data
+# ]
+
+# fulfilled_orders =[
+#   {customer_id: 12, customer_name: 'Emma Lopez', order_value: 425.48},
+#   {customer_id: 32, customer_name: 'Michael Richards', order_value: 120.00},
+#   # rest of data
+# ]
+
+fulfilled_orders = customer_orders.map do |customer|
+  {
+    customer_id: customer[:customer_id],
+    customer_name: customer[:customer_name]
+  }
 end
 
-p penultimate('zero one, two three four five ') 
+customer_orders.each_with_index do |data, index|
+  order_value = data[:orders].reduce(0) do |total, order|
+   if order[:order_fulfilled]
+    total + order[:order_value] 
+   else total
+   end
+  end
+
+  fulfilled_orders[index][:order_value] = order_value
+end
+
+p fulfilled_orders
