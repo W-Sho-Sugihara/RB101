@@ -313,7 +313,7 @@ def how_many_comps(max, min)
   loop do
     prompt "How many computer opponents?"
     computer_count = gets.chomp.to_i
-    break if player_count <= max && player_count >= min
+    break if computer_count <= max && computer_count >= min
     prompt "Invalid number of players. Please try again."
   end
   computer_count
