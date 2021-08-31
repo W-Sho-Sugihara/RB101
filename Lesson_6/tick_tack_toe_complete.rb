@@ -109,25 +109,16 @@ def winning_diagonals_for_3x3
 end
 
 def winning_rows_for_5x5
-  # rows_array = [[1, 2, 3], [2, 3, 4], [3, 4, 5]] # init array for 3 in a row
-  # push_to_winning_lines_multiple_times(rows_array, 5, '5x5', 5) # arguments for winning array for 3 in a row
   rows_array = [[1, 2, 3, 4], [2, 3, 4, 5]]
   push_to_winning_lines_multiple_times(rows_array, 5, '5x5', 5)
 end
 
 def winning_columns_for_5x5
-  # columns_array = [[1, 6, 11], [2, 7, 12], [3, 8, 13], [4, 9, 14], [5, 10, 15]] # init array for 3 in a row
-  # push_to_winning_lines_multiple_times(columns_array, 3, '5x5', 5) # arguments for winning array for 3 in a row
   columns_array = [[1, 6, 11, 16], [2, 7, 12, 17], [3, 8, 13, 18], [4, 9, 14, 19], [5, 10, 15, 20]]
   push_to_winning_lines_multiple_times(columns_array, 2, '5x5', 5)
 end
 
 def winning_diagonals_for_5x5
-  # diagolan_array_left_to_right = [[1, 7, 13], [2, 8, 14], [3, 9, 15]] # init array for 3 in a row
-  # diagolan_array_right_to_left = [[3, 7, 11], [4, 8, 12], [5, 9, 13]] # init array for 3 in a row
-  # push_to_winning_lines_multiple_times(diagolan_array_left_to_right, 3, '5x5', 5) # arguments for winning array for 3
-  # push_to_winning_lines_multiple_times(diagolan_array_right_to_left, 3, '5x5', 5) # arguments for winning array for 3
-
   diagolan_array_left_to_right = [[1, 7, 13, 18], [2, 8, 14, 19]]
   diagolan_array_right_to_left = [[4, 8, 12, 16], [5, 9, 13, 17]]
   push_to_winning_lines_multiple_times(diagolan_array_left_to_right, 2, '5x5', 5)
