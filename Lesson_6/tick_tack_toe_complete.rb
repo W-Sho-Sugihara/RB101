@@ -604,8 +604,11 @@ def search_winning5x5_9x9lines_for_2in_a_row(brd, marker, current_dimensions)
   placement
 end
 
-def move_3x3(brd, marker, current_dimensions)
-  loop_though_winning_lines_3x3(brd, marker, current_dimensions)
+def move_3x3(brd, marker, current_dimensions, square = nil)
+  if square.nil?
+    square = loop_though_winning_lines_3x3(brd, marker, current_dimensions)
+  end
+  square
 end
 
 def winning_move(brd, current_dimensions, current_player)
@@ -697,8 +700,8 @@ end
 
 def computer_places_piece!(brd, current_dimensions, current_player, players_array)
   if current_dimensions == '3x3'
-    square = move_3x3(brd, MARKERS[current_player], current_dimensions) # offence
-    square = move_3x3(brd, MARKERS[next_player(players_array, current_player)], current_dimensions) # defence
+    square = move_3x3(brd, MARKERS[current_player], current_dimensions, square) # offence
+    square = move_3x3(brd, MARKERS[next_player(players_array, current_player)], current_dimensions, square) # defence
     square = place_center_of_brd(brd, current_dimensions, square)
     square = place_in_empty_square(brd, square)
   else
