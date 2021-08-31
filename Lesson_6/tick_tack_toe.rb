@@ -5,7 +5,7 @@ WINNING_LINES = [[1, 2, 3], [4, 5, 6], [7, 8, 9],
                  [1, 5, 9], [3, 5, 7]]
 PLAYER_MARKER = 'X'
 COMPUTER_MARKER = 'O'
-MATCH_TOTAL = 2
+MATCH_TOTAL = 5
 PLAYER_OPTIONS = {
   1 => 'player',
   2 => 'computer'
