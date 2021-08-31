@@ -696,7 +696,7 @@ end
 
 # rubocop:enable Layout/LineLength, Metrics/AbcSize
 
-# rubocop:disable Layout/LineLength, Style/IdenticalConditionalBranches, Metrics/AbcSize, Metrics/MethodLength, Lint/UselessAssignment
+# rubocop:disable Layout/LineLength, Style/IdenticalConditionalBranches, Metrics/AbcSize, Metrics/MethodLength
 
 def computer_places_piece!(brd, current_dimensions, current_player, players_array)
   if current_dimensions == '3x3'
@@ -717,7 +717,7 @@ def computer_places_piece!(brd, current_dimensions, current_player, players_arra
   display_comp_move(square)
 end
 
-# rubocop:enable Layout/LineLength, Style/IdenticalConditionalBranches, Metrics/AbcSize, Metrics/MethodLength, Lint/UselessAssignment
+# rubocop:enable Layout/LineLength, Style/IdenticalConditionalBranches, Metrics/AbcSize, Metrics/MethodLength
 
 #           -----------------  For Player Placement  ----------------------
 
