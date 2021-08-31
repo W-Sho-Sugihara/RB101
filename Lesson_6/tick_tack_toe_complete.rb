@@ -694,30 +694,40 @@ def place_in_empty_square(brd, square)
   square
 end
 
-# rubocop:enable Layout/LineLength, Metrics/AbcSize
+# rubocop:enable Layout/LineLength
 
-# rubocop:disable Layout/LineLength, Style/IdenticalConditionalBranches, Metrics/AbcSize, Metrics/MethodLength
+# rubocop:disable Layout/LineLength
+
+def comp_3x3_move(brd, current_dimensions, current_player, players_array)
+  square = move_3x3(brd, MARKERS[current_player], current_dimensions, square) # offence
+  square = move_3x3(brd, MARKERS[next_player(players_array, current_player)], current_dimensions, square) # defence
+  square = place_center_of_brd(brd, current_dimensions, square)
+  square = place_in_empty_square(brd, square)
+  square
+end
+
+def comp_5x5_and_9x9_move(brd, current_dimensions, current_player, players_array)
+  square = winning_move(brd, current_dimensions, current_player)
+  square = prevent_winning_move(brd, current_dimensions, players_array, square)
+  square = setup_winning_condition_move(brd, current_dimensions, current_player, square)
+  square = prevent_winning_setup_move(brd, current_dimensions, players_array, square)
+  square = place_close_to_self(brd, MARKERS[current_player], current_dimensions, square)
+  square = place_close_to_player(brd, current_dimensions, players_array, square)
+  square = place_in_empty_square(brd, square)
+  square
+end
 
 def computer_places_piece!(brd, current_dimensions, current_player, players_array)
   if current_dimensions == '3x3'
-    square = move_3x3(brd, MARKERS[current_player], current_dimensions, square) # offence
-    square = move_3x3(brd, MARKERS[next_player(players_array, current_player)], current_dimensions, square) # defence
-    square = place_center_of_brd(brd, current_dimensions, square)
-    square = place_in_empty_square(brd, square)
+    square = comp_3x3_move(brd, current_dimensions, current_player, players_array)
   else
-    square = winning_move(brd, current_dimensions, current_player)
-    square = prevent_winning_move(brd, current_dimensions, players_array, square)
-    square = setup_winning_condition_move(brd, current_dimensions, current_player, square)
-    square = prevent_winning_setup_move(brd, current_dimensions, players_array, square)
-    square = place_close_to_self(brd, MARKERS[current_player], current_dimensions, square)
-    square = place_close_to_player(brd, current_dimensions, players_array, square)
-    square = place_in_empty_square(brd, square)
+    square = comp_5x5_and_9x9_move(brd, current_dimensions, current_player, players_array)
   end
   brd[square] = MARKERS[current_player]
   display_comp_move(square)
 end
 
-# rubocop:enable Layout/LineLength, Style/IdenticalConditionalBranches, Metrics/AbcSize, Metrics/MethodLength
+# rubocop:enable Layout/LineLength, Metrics/AbcSize
 
 #           -----------------  For Player Placement  ----------------------
 
