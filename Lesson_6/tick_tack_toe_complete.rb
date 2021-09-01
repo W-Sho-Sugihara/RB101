@@ -1,4 +1,3 @@
-require 'pry'
 
 class String
   # String colorization that I found on Stackoverflow
@@ -577,7 +576,8 @@ end
 def loop_though_winning_lines_3x3(brd, marker, current_dimensions)
   placement = nil
   WINNING_LINES[current_dimensions].each do |sub_array|
-    if brd.values_at(*sub_array).count(marker) == 2 && find_empty_square(brd, sub_array).size == 1
+    if brd.values_at(*sub_array).count(marker) == 2 &&
+      find_empty_square(brd, sub_array).size == 1
       placement = find_empty_square(brd, sub_array).keys.first
     end
   end
@@ -587,7 +587,8 @@ end
 def search_winning5x5_9x9lines_for_3in_a_row(brd, marker, current_dimensions)
   placement = nil
   WINNING_LINES[current_dimensions].each do |sub_array|
-    if brd.values_at(*sub_array).count(marker) == 3 && find_empty_square(brd, sub_array).size == 1
+    if brd.values_at(*sub_array).count(marker) == 3 &&
+      find_empty_square(brd, sub_array).size == 1
       placement = find_empty_square(brd, sub_array).keys.first
     end
   end
@@ -597,7 +598,8 @@ end
 def search_winning5x5_9x9lines_for_2in_a_row(brd, marker, current_dimensions)
   placement = nil
   WINNING_LINES[current_dimensions].each do |sub_array|
-    if brd.values_at(*sub_array).count(marker) == 2 && find_empty_square(brd, sub_array).size == 2
+    if brd.values_at(*sub_array).count(marker) == 2 &&
+      find_empty_square(brd, sub_array).size == 2
       placement = find_empty_square(brd, sub_array).keys.first
     end
   end
@@ -664,7 +666,8 @@ end
 def place_close_to_self(brd, marker, current_dimensions, square)
   if square.nil? # should be nil if nothing assigned to square
     WINNING_LINES[current_dimensions].shuffle.each do |sub_array|
-      if brd.values_at(*sub_array).count(marker) == 1 && find_empty_square(brd, sub_array).size == 3
+      if brd.values_at(*sub_array).count(marker) == 1 &&
+        find_empty_square(brd, sub_array).size == 3
         square = find_empty_square(brd, sub_array).keys.sample
       end
     end
@@ -677,7 +680,8 @@ def place_close_to_player(brd, current_dimensions, players_array, square)
     array_of_options = []
     players_array.map do |player|
       WINNING_LINES[current_dimensions].shuffle.each do |sub_array|
-        if brd.values_at(*sub_array).count(MARKERS[player]) == 1 && find_empty_square(brd, sub_array).size == 3
+        if brd.values_at(*sub_array).count(MARKERS[player]) == 1 &&
+          find_empty_square(brd, sub_array).size == 3
           array_of_options << find_empty_square(brd, sub_array).keys
         end
       end
