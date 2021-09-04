@@ -86,7 +86,7 @@ end
 
 # rubocop:enable Metrics/AbcSize, Lint/UselessAssignment
 
-#--------------------------DISPLAY-----------------------------
+#--------------------WELCOME DISPLAY-----------------------------
 
 welcome = <<~WEL
   +#{('-' * 30)}+
@@ -95,6 +95,49 @@ welcome = <<~WEL
   |#{(' ' * 30)}|
   +#{('-' * 30)}+
 WEL
+
+rules = <<~RLS
+RULES
+
+The goal of Twenty-One is to try to get
+as close to 21 as possible, without going over.
+
+Using a standard deck of cardS (no Joker),
+the player and dealer are both initially dealt 2 cards.
+The Dealer will have one card face up.
+
+The value of each card is as follows:
+Ace = 1 or 11
+King, Queen & Jack = 10
+Numbers = the number displayed on itself
+
+On the Players turn she/he can choose to either HIT or STAY.
+If HIT is chosen, a card from the top of the deck is added
+to the players hand and card value is totaled.
+If you go over 21, it's a "bust" and you lose.
+The Player may choose to HIT as many consecutive times
+as she/he wishes to. 
+If STAY is chosen no cards are added and Dealer goes next. 
+The Dealer will hit until his total card value is #{DEALER_MIN} or greater. 
+If the dealer gose over 21, it's a bust and the dealer loses. 
+If neither player busts, then the dealers hand is revealed 
+and who ever has a hand value closer to #{MAX} wins.
+
+Ready to Play?
+Press ENTER when ready to continue.
+RLS
+
+#-----------------GOODBYE DISPLAY------------------------
+
+def goodbye
+  system 'clear'
+  puts ''
+  puts 'Thank you for playing!! See you next time. 👋 '
+  sleep(2)
+  system 'clear'
+end
+
+#-----------------GAME DISPLAY--------------------------------
 
 def display_player_hand(game_data)
   puts ''
@@ -119,10 +162,12 @@ end
 
 def display_player_hand_total(game_data)
   prompt "Players total is #{game_data['player_total']}."
+  puts ''
 end
 
 def display_dealer_hand_total(game_data)
   prompt "Dealers total is #{game_data['dealer_total']}."
+  puts ''
 end
 
 def anyone_bust(game_data)
@@ -159,13 +204,10 @@ def deck_count(game_data)
   puts "Cards left in deck: #{game_data['deck'].size}"
 end
 
-# rubocop:disable Layout/LineLength
-
 def display_score(game_data)
-  puts "Player score: #{game_data['player_score']} Dealer score: #{game_data['dealer_score']}"
+  puts "Player score: #{game_data['player_score']}" \
+       " Dealer score: #{game_data['dealer_score']}"
 end
-
-# rubocop:enable Layout/LineLength
 
 def display_board(game_data)
   system "clear"
@@ -241,13 +283,26 @@ end
 
 #-----------------------DEALER TURN MECHANICS-----------------
 
+def dealer_hits(game_data)
+  game_data['dealer_hand'] << game_data['deck'].shift
+  prompt "Dealer hits."
+  hand_total(game_data)
+  sleep(1)
+end
+
 def dealer_turn(game_data)
   reshuffle(game_data)
-  until game_data['dealer_total'] >= DEALER_MIN
-    game_data['dealer_hand'] << game_data['deck'].shift
-    prompt "Dealer hits."
-    hand_total(game_data)
-    sleep(1)
+  if game_data['dealer_total'] >= DEALER_MIN
+    prompt "Dealer stays."
+    sleep(1.3)
+  else
+    until game_data['dealer_total'] >= DEALER_MIN
+      dealer_hits(game_data)
+    end
+    if game_data['dealer_total'] <= MAX
+      prompt "Dealer stays."
+      sleep(1.3)
+    end
   end
 end
 
@@ -268,6 +323,7 @@ end
 def play_again?
   answer = ''
   loop do
+    puts ''
     prompt "Would you like to play again? (Y/N)"
     answer = gets.chomp.downcase[0]
     break if answer == 'y' || answer == 'n'
@@ -306,7 +362,9 @@ game_data = {
 
 system 'clear'
 puts welcome
-sleep(2)
+sleep(1.3)
+puts rules
+gets
 loop do
   loop do
     init_hands(game_data)
@@ -323,3 +381,5 @@ loop do
   clear_hands(game_data)
   reshuffle(game_data)
 end
+
+goodbye
