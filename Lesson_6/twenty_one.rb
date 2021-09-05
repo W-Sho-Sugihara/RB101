@@ -1,5 +1,3 @@
-require 'pry'
-
 MAX = 21
 DEALER_MIN = 17
 ACE_LOWER = 1
