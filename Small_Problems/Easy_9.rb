@@ -262,16 +262,16 @@
   #
 
 
-def anagrams(string_array)
-  arr = []
-  string_array.each do |word|
-    arr << string_array.select { |word2| word2.split('').sort == word.split('').sort }
-  end
-  arr.uniq.each { |sub_arr|  p sub_arr }
-end
+# def anagrams(string_array)
+#   arr = []
+#   string_array.each do |word|
+#     arr << string_array.select { |word2| word2.split('').sort == word.split('').sort }
+#   end
+#   arr.uniq.each { |sub_arr|  p sub_arr }
+# end
 
-words =  ['demo', 'none', 'tied', 'evil', 'dome', 'mode', 'live',
-  'fowl', 'veil', 'wolf', 'diet', 'vile', 'edit', 'tide',
-  'flow', 'neon']
+# words =  ['demo', 'none', 'tied', 'evil', 'dome', 'mode', 'live',
+#   'fowl', 'veil', 'wolf', 'diet', 'vile', 'edit', 'tide',
+#   'flow', 'neon']
 
-  anagrams(words)
+#   anagrams(words)
