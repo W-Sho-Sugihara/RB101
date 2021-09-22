@@ -270,6 +270,18 @@
 #   arr.uniq.each { |sub_arr|  p sub_arr }
 # end
 
+# def anagrams(string_array)
+#   arr = []
+#   string_array.each do |word|
+#     arr << string_array.each_with_object([]) do |word2, sub_arr| 
+#       if word2.split('').sort == word.split('').sort 
+#       sub_arr << word2
+#     end 
+#   end
+# end
+#   arr.uniq.each { |sub_arr|  p sub_arr }
+# end
+
 # words =  ['demo', 'none', 'tied', 'evil', 'dome', 'mode', 'live',
 #   'fowl', 'veil', 'wolf', 'diet', 'vile', 'edit', 'tide',
 #   'flow', 'neon']

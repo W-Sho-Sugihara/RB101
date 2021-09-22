@@ -89,3 +89,197 @@
 # p max_rotation(8_703_529_146) == 7_321_609_845
 
 #-------------- 1000 Lights ---------------------------
+# input: integer (n)
+# output: array
+# Rules: 
+  # all lights start off
+  # toggle all switches that are multiples of 1..n on order
+  # toggle all multiples of 1, then all multiples of 2 then all multiples of 3, etc...until multiples of n
+  # return which light are on after the nth iteration
+
+# Algorithm
+  # create array (1..n)
+  # iterate through array and for every element iterate through array with a count and toggle switches that are multiples of the count, mutating array
+  # select elements from array that are "on", transform 'on' lights to their index +1 then return
+
+# def lights_on(n)
+#   lights = {}
+#   n.times { |i| lights[i+1] = false}
+
+#   n.times do |i|
+#     lights.each do |k, v|
+#      lights[k] = !v if k % (i + 1) == 0
+#     end
+#   end
+#   lights.select { |k, v| v == true}.keys
+# end
+
+# p lights_on(1000)
+
+#---------------DIAMONDS--------------------------
+# input: odd integer
+# output: visual display of *'s
+# Rules 
+  # given int will always be a positive odd number
+  # display a 4 point diamond in a `n` x `n` grid where `n` is the given int.
+
+
+# Algorithm
+  # using `#upto` iterate n times starting at 1, blok param is count
+  # the block puts a string interpolation "#{'*' * count }" #center(9) if count is odd
+  # using `#downto`, iterate n-1 times down to 1, block param set to count
+  # the block puts a string inerpolation "#{'*' * count}" centered at 9 if count is odd.
+
+# def diamond(n)
+#   (1).upto(n) { |count| (puts ("*" * count).center(n)) if count.odd? }
+#   (n-1).downto(1) { |count| (puts ("*" * count).center(n)) if count.odd? }
+# end
+# def outer_diamond(n)
+#   (1).upto(n) do |count| 
+#     if count == 1  
+#       puts "*".center(n)
+#     elsif count.odd?
+#       puts ('*' + (" " * (count - 2)) + '*').center(n)
+#     end
+#   end
+#   (n-1).downto(1) do |count| 
+#     if count == 1
+#       puts "*".center(n)  
+#     elsif count.odd?
+#       puts ('*' + (" " * (count - 2)) + '*').center(n)
+#     end
+#   end
+# end
+
+
+# def print_row(grid_size, distance_from_center)
+#   number_of_stars = grid_size - 2 * distance_from_center
+#   stars = '*' * number_of_stars
+#   if number_of_stars == 1
+#     puts stars.center(grid_size)
+#   else
+#     puts ('*' + (' ' * (number_of_stars - 2)) + '*').center(grid_size)
+#   end 
+# end
+
+# def outer_diamond(grid_size)
+#   max_distance = (grid_size - 1) / 2
+#   max_distance.downto(0) { |distance| print_row(grid_size, distance) }
+#   1.upto(max_distance)   { |distance| print_row(grid_size, distance) }
+# end
+# diamond(3)
+# outer_diamond(9)
+# diamond(7)
+
+#-------- STACK MACHINE------------------
+# input: string of instruction
+# Output: integer when instructions input 'print'
+
+#Rules:
+  # n Place a value n in the "register". Do not modify the stack.
+  # PUSH Push the register value on to the stack. Leave the value in the register.
+  # ADD Pops a value from the stack and adds it to the register value, storing the result in the register.
+  # SUB Pops a value from the stack and subtracts it from the register value, storing the result in the register.
+  # MULT Pops a value from the stack and multiplies it by the register value, storing the result in the register.
+  # DIV Pops a value from the stack and divides it into the register value, storing the integer result in the register.
+  # MOD Pops a value from the stack and divides it into the register value, storing the integer remainder of the division in the register.
+  # POP Remove the topmost item from the stack and place in register
+  # PRINT Print the register value
+  # register starts at 0
+  # all instructional inputs will be valid instruction
+
+# Algorithm
+  # Define method taking one argument
+  # create empty register 
+  # create empty stack array
+  # split input string into array
+  # if instruction is a string number convert to integer object then add to register
+  # iterate throught array and eval the string. execute the algorithm of each instruction
+  # use case statement to organize algorithms of instruction.
+
+# def minilang(string)
+#   register = 0
+#   stack =[]
+#   instructions = string.upcase.split(' ')
+#   instructions.each do |instruction|
+#     case instruction
+#     when 'PUSH'  then stack.push(register)
+#     when 'ADD'   then stack.pop += register
+#     when 'SUB'   then (stack.pop -= register).abs
+#     when 'MULT'  then stack.pop *= register
+#     when 'DIV'   then register /= stack.pop
+#     when 'MOD'   then register %= stack.pop
+#     when 'POP'   then register = stack.pop
+#     when 'PRINT' then p register
+#     else              register = instruction.to_i
+#     end
+#   end
+# end
+
+
+# (3 + (4 * 5) - 7) / (5 % 3)
+
+# minilang('3 push 5 mod push 5 push 4 mult push 3 add push 7 sub div print')
+
+# minilang('add PRINT')
+# # 0
+
+# minilang('5 PUSH 3 MULT PRINT')
+# # 15
+
+# minilang('5 PRINT PUSH 3 PRINT ADD PRINT')
+# # 5
+# # 3
+# # 8
+
+# minilang('5 PUSH POP PRINT')
+# # 5
+
+# minilang('3 PUSH 4 PUSH 5 PUSH PRINT ADD PRINT POP PRINT ADD PRINT')
+# # 5
+# # 10
+# # 4
+# # 7
+
+# minilang('3 PUSH PUSH 7 DIV MULT PRINT ')
+# # 6
+
+# minilang('4 PUSH PUSH 7 MOD MULT PRINT ')
+# # 12
+
+# minilang('-3 PUSH 5 SUB PRINT')
+# # 8
+
+# minilang('6 PUSH')
+# # (nothing printed; no PRINT commands)
+
+# ---------------WORD DIGIT-------------------------------------
+# input: string 
+# output: same string but mutated
+# Rules:
+  #change all spelled out numbers to their integer equivalant.
+
+# Algorithm
+  # init a hash with keys 'zero' through 'nine' with their equivalant integers 0-9
+  # Split given string into an array
+  # Iterate over string array with each with index
+  # upon each iteration eval the current element with the keys of the hash, if key exists then replace the current element in the calling array using []=  and the current index to the value of the key: value pair where the key is the same name as the current element.
+
+
+def word_to_digit(string)
+  hsh = {
+    'one'=> 1, 
+    'two'=> 2, 
+    'three'=> 3, 
+    'four'=> 4, 
+    'five'=> 5, 
+    'six'=> 6, 
+    'seven'=> 7, 
+    'eight'=> 8, 
+    'nine'=> 9, 
+    'zero'=> 0
+  }
+  string.gsub!(/\w/, hsh)
+end
+
+p word_to_digit('Please call me at five five five one two three four. Thanks.')
