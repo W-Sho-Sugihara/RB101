@@ -266,20 +266,125 @@
   # upon each iteration eval the current element with the keys of the hash, if key exists then replace the current element in the calling array using []=  and the current index to the value of the key: value pair where the key is the same name as the current element.
 
 
-def word_to_digit(string)
-  hsh = {
-    'one'=> 1, 
-    'two'=> 2, 
-    'three'=> 3, 
-    'four'=> 4, 
-    'five'=> 5, 
-    'six'=> 6, 
-    'seven'=> 7, 
-    'eight'=> 8, 
-    'nine'=> 9, 
-    'zero'=> 0
-  }
-  string.gsub!(/\w/, hsh)
-end
+# def word_to_digit(string)
+#   letter_num_array = ['zero', 'one', 'two','three','four','five','six','seven','eight','nine']
+#   letter_num_array.each_with_index do |num_str, index|
+#     string.gsub!(/\b#{num_str}\b/, index.to_s)
+#   end
+#   string
+# end
 
-p word_to_digit('Please call me at five five five one two three four. Thanks.')
+# p word_to_digit('Please call me at five five five one two three four. Thanks.')
+
+#-------Fibonacci Numbers (Recursion)-----------------
+# Input: INTEGER `n`
+# Return: integer
+# Goals: find the fibonacci number at `n` in the fibonacci sequence
+
+# Rules
+
+  # Explicit:
+    # use recursion
+
+  # Implicit:
+    #
+
+# Test Code:
+  #
+
+# Algorithm 
+#
+
+# def fibonacci(n)
+#   return 1 if n <= 2
+#   n = fibonacci(n-1) + fibonacci(n-2)
+# end
+
+# def fibonacci_tail(nth, acc1, acc2)
+#   if nth == 1
+#     acc1
+#   elsif nth == 2
+#     acc2
+#   else
+#     fibonacci_tail(nth - 1, acc2, acc2 + acc1)
+#   end
+# end
+
+# def fibonacci(nth)
+#   fibonacci_tail(nth, 1, 1)
+# end
+
+# p fibonacci(80)
+# p fibonacci(2) == 1
+# p fibonacci(3) == 2
+# p fibonacci(4) == 3
+# p fibonacci(5) == 5
+# p fibonacci(12) == 144
+# p fibonacci(20) == 6765
+
+#-------Fibonacci Numbers (Procedural)------------------
+
+# Input: integer, `n`
+# Return: integer
+# Goals: return the integer ar `n`th number of the fibonacci sequence
+
+# Rules
+
+  # Explicit:
+    # no recursion
+
+  # Implicit:
+    #
+
+# Test Code:
+  #
+
+# Algorithm 
+# 
+
+# def fibonacci(nth)
+#   arr = [1,1]
+#   (2).upto(nth-1) do |index|
+#     arr << arr[index -1] + arr[index-2]
+#   end
+#   arr.last
+# end
+
+# p fibonacci(4) == 3
+# p fibonacci(5) == 5
+# p fibonacci(20) == 6765
+# p fibonacci(100) == 354224848179261915075
+# p fibonacci(100_001)  => 4202692702.....8285979669707537501
+
+#-----------Fibonacci Numbers (Last Digit)------------
+# Input:
+# Return: the last digit of the nth number in the sequence
+# Goals: 
+
+# Rules
+
+  # Explicit:
+    #
+
+  # Implicit:
+    #
+
+# Test Code:
+  #
+
+# Algorithm 
+#
+
+# def fibonacci_last(nth)
+#   first, last = [1,1]
+#   3.upto(nth) do
+#     first, last = [last, (first+last)%10]
+#   end
+#   last.to_s.chars.last
+# end
+
+# p fibonacci_last(15)        # -> 0  (the 15th Fibonacci number is 610)
+# p fibonacci_last(20)        # -> 5 (the 20th Fibonacci number is 6765)
+# p fibonacci_last(100)   
+# p fibonacci_last(123456789)   
+
